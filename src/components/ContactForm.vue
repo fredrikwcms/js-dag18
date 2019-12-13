@@ -23,7 +23,7 @@
                 ></b-form-input>
             </b-form-group>
             <b-button type="submit" variant="primary">Submit</b-button>
-                <h5 v-for="form in forms" v-bind:key="form">{{form.name + ' ' + form.mail}}</h5>
+                <h5 v-for="form in forms" v-bind:key="form.name">{{form.name + ' ' + form.mail}}</h5>
         
         </b-form>
     </div>
@@ -33,7 +33,7 @@
 export default {
     data() {
         return {
-            formInput: {name: "", mail: ""},
+            formInput: {name: "", mail: "", username: ""},
             forms: []
         }
     },

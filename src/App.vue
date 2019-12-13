@@ -1,23 +1,36 @@
 <template>
   <div id="app">
-    <router-link v-bind:to="'/'">Home</router-link><br>
-    <router-link v-bind:to="'/about'">About Vue</router-link><br>
-    <router-link v-bind:to="'/contact-us'">Contact us</router-link>
+    <header id="site-header">
+      <router-link v-bind:to="'/'">Home</router-link><br>
+      <router-link v-bind:to="'/about'">About Vue</router-link><br>
+      <router-link v-bind:to="'/contact-us'">Contact us</router-link>
+      <UserLogin v-if="!childData" @inputData="getUser"/>
+      <h1 v-if="childData">Logged in user: {{childData}}</h1>
+    </header>
     <!-- <a href="/"></a> -->
-    <router-view usr="Peter"></router-view>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
 // We dont need this one anymore, since we get it in our main.js instead
-// import HelloWorld from './components/HelloWorld.vue'
+import UserLogin from './components/UserLogin.vue'
 
 export default {
   name: 'app',
-  // Same with this one, no need for it.
-  // components: {
-  //   HelloWorld
-  // }
+  components: {
+    UserLogin
+  },
+  data() {
+    return {
+      childData: ""
+    }
+  },
+  methods: {
+    getUser(userName) {
+      this.childData = userName;
+    }
+  }
 }
 
 </script>
@@ -30,5 +43,9 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+#site-header {
+  background-color: yellow;
+  display: flex;
 }
 </style>
